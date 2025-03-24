@@ -11,8 +11,12 @@ export const emailRouter = createTRPCRouter({
     .mutation(async ({input})=>{
         try {
             const response = await sendEmail(input.to , input.subject ,input.message)
+            if (!response.success) {
+                throw new Error(response.message);
+            }
             return {success :true ,msg :response.message}
         } catch (error) {
+            console.error(`❌ Email sending failed:`, error);
             throw new Error(`Failed to send email `)
         }
     })

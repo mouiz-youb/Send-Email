@@ -2,7 +2,6 @@
 import React, { useState } from 'react'
 import { api } from '@/trpc/react'
 import toast from "react-hot-toast"
-import { sendEmail } from '../../utils/nodemailer';
 
 
 function page() {
@@ -24,13 +23,18 @@ function page() {
     })
 
 
-    const  handleSubmit =(e:React.FormEvent )=>{
-        e.preventDefault()
-        sendEmail.mutate({to,subject,message})
-    }
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!to || !subject || !message) {
+            toast.error("❌ Please fill in all fields!");
+            return;
+        }
+        console.log("📩 Sending Email:", to, subject, message);
+        sendEmail.mutate({ to, subject, message });
+    };
   return (
     <div className='flex justify-center items-center flex-col w-full gap-5 p-5'>
-        <h1 className='text-2xl text-sky-500'>Send email </h1>
+        <h1 className='text-2xl text-sky-500'>Send email  😀😃😄😁😆</h1>
         <form 
         onSubmit={handleSubmit}
         className='flex justify-center items-center flex-col gap-10 shadow-xl rounded-xl  w-3/4 p-5 md:w-1/2 ' >
