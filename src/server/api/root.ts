@@ -9,7 +9,8 @@ import { emailRouter } from "./routers/email";
  */
 export const appRouter = createTRPCRouter({
   post: postRouter,
-  email :emailRouter
+  email :emailRouter,
+  
 });
 
 // export type definition of API

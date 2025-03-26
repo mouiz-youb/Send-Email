@@ -5,7 +5,6 @@ import toast from "react-hot-toast"
 
 
 function page() {
-    const [to, setTo] = useState("")
     const [subject, setSubject] = useState("")
     const [message, setMessage] = useState("")
 
